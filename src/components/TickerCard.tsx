@@ -28,21 +28,20 @@ const TickerCard: React.FC<TickerCardProps> = ({
   }
 
   const changeColor = isPositive ? 'text-green-400' : 'text-red-400'
-  const ringColor = isPositive ? 'ring-green-500/30' : 'ring-red-500/30'
 
   if (loading) {
     return (
-      <div className="bg-gray-800 p-4 rounded-xl animate-pulse h-[116px]">
-        <div className="h-4 bg-gray-700 rounded w-1/4 mb-4"></div>
-        <div className="h-6 bg-gray-700 rounded w-1/2 mb-2"></div>
-        <div className="h-4 bg-gray-700 rounded w-1/3"></div>
+      <div className="bg-[#2c2c2c] p-4 rounded-xl animate-pulse h-[116px]">
+        <div className="h-4 bg-[#3a3a3a] rounded w-1/4 mb-4"></div>
+        <div className="h-6 bg-[#3a3a3a] rounded w-1/2 mb-2"></div>
+        <div className="h-4 bg-[#3a3a3a] rounded w-1/3"></div>
       </div>
     )
   }
 
   if (error) {
     return (
-      <div className="bg-gray-800 p-4 rounded-xl flex flex-col justify-center items-center text-red-400 h-[116px]">
+      <div className="bg-[#2c2c2c] p-4 rounded-xl flex flex-col justify-center items-center text-red-400 h-[116px]">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6 mb-1"
@@ -63,9 +62,9 @@ const TickerCard: React.FC<TickerCardProps> = ({
   }
 
   return (
-    <div className="bg-gray-800 p-4 rounded-xl shadow-lg ring-1 ring-white/10 transition-transform duration-300 hover:scale-105">
+    <div className="bg-[#2c2c2c] p-4 rounded-xl shadow-lg ring-1 ring-white/10 transition-transform duration-300 hover:scale-105">
       <div className="flex items-center mb-2">
-        <div className="mr-3 text-yellow-400">{icon}</div>
+        <div className="mr-3 text-[#74F9C0]">{icon}</div>
         <h3 className="text-lg font-semibold text-white">{name}</h3>
       </div>
       <p className="text-2xl font-bold text-white">{formatPrice(price)}</p>

@@ -34,13 +34,13 @@ const NewsSection: React.FC = () => {
   }
 
   return (
-    <div className="bg-gray-800 p-6 rounded-xl shadow-lg ring-1 ring-white/10">
+    <div className="bg-[#2c2c2c] p-6 rounded-xl shadow-lg ring-1 ring-white/10">
       <h3 className="text-xl font-bold text-white mb-4">Últimas Notícias</h3>
       <ul className="space-y-3">
         {news.map((news) => (
           <li
             key={news.id}
-            className="border-b border-gray-700 pb-3 last:border-b-0"
+            className="border-b border-white/10 pb-3 last:border-b-0"
           >
             <a
               href={news.url}
@@ -48,9 +48,7 @@ const NewsSection: React.FC = () => {
               rel="noopener noreferrer"
               className="group"
             >
-              <p className="text-white group-hover:text-cyan-400 transition-colors">
-                {news.title}
-              </p>
+              <p className="text-[#74F9C0]">{news.title}</p>
               <span className="text-xs text-gray-500">{news.source}</span>
             </a>
           </li>
