@@ -18,14 +18,12 @@ export default function App() {
       setLoading(true)
       setError(false)
       try {
-        // Busca BTC e ETH
         const cryptoResponse = await fetch(
           'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=brl&include_24hr_change=true'
         )
         if (!cryptoResponse.ok) throw new Error('Crypto API failed')
         const cryptoData = await cryptoResponse.json()
 
-        // Busca Dólar
         const dollarResponse = await fetch(
           'https://economia.awesomeapi.com.br/last/USD-BRL'
         )
