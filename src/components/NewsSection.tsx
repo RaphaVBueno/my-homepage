@@ -12,7 +12,9 @@ const NewsSection: React.FC = () => {
       setLoading(true)
       setError(false)
       try {
-        const response = await axios.get('http://127.0.0.1:8000/')
+        const response = await axios.get(
+          'https://my-home-page-server.onrender.com'
+        )
         setNews(response.data)
         console.log(response.data)
       } catch (err) {
