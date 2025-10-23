@@ -8,15 +8,23 @@ const NewsSection: React.FC = () => {
   const [error, setError] = useState(false)
 
   useEffect(() => {
+    const THREE_HOURS_IN_MS = 3 * 60 * 60 * 1000
+
     const fetchNews = async () => {
       setLoading(true)
       setError(false)
       try {
         const response = await axios.get(
-          'https://my-home-page-server.onrender.com'
+          'https://my-home-page-server.onrender.com/'
+        )
+        localStorage.setItem(
+          'news',
+          JSON.stringify({
+            date: new Date().toISOString(),
+            data: response.data,
+          })
         )
         setNews(response.data)
-        console.log(response.data)
       } catch (err) {
         console.error('Erro ao buscar notícias:', err)
         setError(true)
@@ -24,11 +32,34 @@ const NewsSection: React.FC = () => {
         setLoading(false)
       }
     }
-    fetchNews()
+
+    const loadNews = () => {
+      const cachedNewsJSON = localStorage.getItem('news')
+      if (cachedNewsJSON) {
+        const { date, data } = JSON.parse(cachedNewsJSON)
+        const cacheDate = new Date(date)
+        const now = new Date()
+
+        if (now.getTime() - cacheDate.getTime() > THREE_HOURS_IN_MS) {
+          fetchNews()
+        } else {
+          setNews(data)
+          setLoading(false)
+        }
+      } else {
+        fetchNews()
+      }
+    }
+
+    loadNews()
   }, [])
 
   if (loading) {
-    return <div>Carregando...</div>
+    return (
+      <div className="bg-[#2c2c2c] p-6 rounded-xl shadow-lg ring-1 ring-white/10">
+        Carregando Notícias...
+      </div>
+    )
   }
 
   if (error) {
