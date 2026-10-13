@@ -3,6 +3,7 @@ import Header from './components/Header'
 import TickerCard from './components/TickerCard'
 import ReminderCard from './components/ReminderCard'
 import NewsSection from './components/NewsSection'
+import WeatherSection from './components/WeatherSection'
 import type { PriceData } from './types'
 import { btcIcon, ethIcon, jsIcon, pythonIcon, usdIcon } from './icons'
 import { jstips } from './jstips'
@@ -127,6 +128,7 @@ export default function App() {
               icon={pythonIcon}
             />
           </div>
+          <WeatherSection />
           <NewsSection />
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <TickerCard
