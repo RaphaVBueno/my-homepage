@@ -41,7 +41,12 @@ const WeatherSection: React.FC = () => {
         <div className="animate-pulse space-y-4">
           <div className="h-5 bg-[#3a3a3a] rounded w-1/3"></div>
           <div className="h-24 bg-[#3a3a3a] rounded"></div>
-          <div className="grid grid-cols-4 sm:grid-cols-8 gap-3">
+          <div className="flex flex-col gap-2 sm:hidden">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} className="h-12 bg-[#3a3a3a] rounded-lg"></div>
+            ))}
+          </div>
+          <div className="hidden sm:grid grid-cols-8 gap-3">
             {Array.from({ length: 8 }).map((_, i) => (
               <div key={i} className="h-28 bg-[#3a3a3a] rounded-lg"></div>
             ))}
@@ -63,6 +68,11 @@ const WeatherSection: React.FC = () => {
   const { current, daily } = weather
   const currentInfo = getWeatherInfo(current.weatherCode)
 
+  // Week-wide temperature range, used to position each day's min–max bar on mobile
+  const weekMin = Math.min(...daily.map((d) => d.tempMin))
+  const weekMax = Math.max(...daily.map((d) => d.tempMax))
+  const weekSpan = Math.max(weekMax - weekMin, 1)
+
   return (
     <div className={CARD}>
       <div className="flex items-center gap-2 mb-5">
@@ -83,7 +93,56 @@ const WeatherSection: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
+      {/* Mobile: vertical list with temperature range bars */}
+      <ul className="sm:hidden divide-y divide-white/5 bg-[#212121] rounded-xl overflow-hidden">
+        {daily.map((day) => {
+          const isToday = day.dayName === 'Hoje'
+          const left = ((day.tempMin - weekMin) / weekSpan) * 100
+          const width = Math.max(((day.tempMax - day.tempMin) / weekSpan) * 100, 4)
+          return (
+            <li
+              key={day.date}
+              className={`flex items-center gap-3 px-4 py-3 ${isToday ? 'bg-[#74F9C0]/10' : ''}`}
+            >
+              <div className="w-16 shrink-0 leading-tight">
+                <div
+                  className={`text-sm font-bold capitalize ${isToday ? 'text-[#74F9C0]' : 'text-gray-200'}`}
+                >
+                  {day.dayName}
+                </div>
+                <div className="text-xs text-gray-500">{formatDate(day.date)}</div>
+              </div>
+
+              <div className="w-12 shrink-0 flex flex-col items-center leading-none">
+                <span className="text-2xl">{getWeatherInfo(day.weatherCode).icon}</span>
+                {day.precipitationProb > 0 && (
+                  <span className="text-[10px] font-semibold text-blue-400 mt-0.5">
+                    {day.precipitationProb}%
+                  </span>
+                )}
+              </div>
+
+              <div className="flex-1 flex items-center gap-2 min-w-0">
+                <span className="w-7 text-right text-sm text-gray-500 tabular-nums">
+                  {Math.round(day.tempMin)}°
+                </span>
+                <div className="relative flex-1 h-1.5 rounded-full bg-white/10">
+                  <div
+                    className="absolute inset-y-0 rounded-full bg-gradient-to-r from-sky-400 via-[#74F9C0] to-amber-400"
+                    style={{ left: `${left}%`, width: `${width}%` }}
+                  />
+                </div>
+                <span className="w-7 text-sm font-semibold text-white tabular-nums">
+                  {Math.round(day.tempMax)}°
+                </span>
+              </div>
+            </li>
+          )
+        })}
+      </ul>
+
+      {/* Desktop: 8-column grid */}
+      <div className="hidden sm:grid grid-cols-8 gap-2">
         {daily.map((day) => {
           const isToday = day.dayName === 'Hoje'
           return (
