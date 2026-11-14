@@ -3,6 +3,8 @@ import ethLogo from '../icons/eth-logo.svg'
 import dollarLogo from '../icons/dollar-logo.svg'
 import jsLogo from '../icons/js-logo.svg'
 import pythonLogo from '../icons/python-logo.svg'
+import portugueseLogo from '../icons/portuguese-logo.svg'
+import mathLogo from '../icons/math-logo.svg'
 
 export const btcIcon = <img src={btcLogo} className="h-6 w-6" alt="btc-logo" />
 
@@ -16,4 +18,12 @@ export const jsIcon = <img src={jsLogo} className="h-6 w-6" alt="js-logo" />
 
 export const pythonIcon = (
   <img src={pythonLogo} className="h-6 w-6" alt="python-logo" />
+)
+
+export const portugueseIcon = (
+  <img src={portugueseLogo} className="h-6 w-6" alt="portuguese-logo" />
+)
+
+export const mathIcon = (
+  <img src={mathLogo} className="h-6 w-6" alt="math-logo" />
 )

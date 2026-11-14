@@ -21,7 +21,7 @@ const ReminderCard: React.FC<ReminderCardProps> = ({ title, icon, tips }) => {
       </div>
       <div className="flex-grow mb-4">
         <p className="text-lg font-semibold text-[#74F9C0] mb-2">{tip.title}</p>
-        <pre className="bg-[#D4D4D4] text-black p-3 rounded-md text-sm mb-2 overflow-x-auto">
+        <pre className="bg-[#D4D4D4] text-black p-3 rounded-md text-sm mb-2 overflow-x-auto whitespace-pre-wrap break-words">
           <code>{tip.code}</code>
         </pre>
         <p className="text-gray-400 text-sm">{tip.explanation}</p>

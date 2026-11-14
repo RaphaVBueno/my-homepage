@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="256px" height="256px" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <rect width="256" height="256" rx="40" fill="#3B82F6"/>
+  <g stroke="#FFFFFF" stroke-width="18" stroke-linecap="round">
+    <!-- mais -->
+    <path d="M78 52 V112 M48 82 H108"/>
+    <!-- menos -->
+    <path d="M148 82 H208"/>
+    <!-- vezes -->
+    <path d="M57 153 L99 195 M99 153 L57 195"/>
+    <!-- igual -->
+    <path d="M148 160 H208 M148 190 H208"/>
+  </g>
+</svg>

@@ -5,9 +5,11 @@ import ReminderCard from './components/ReminderCard'
 import NewsSection from './components/NewsSection'
 import WeatherSection from './components/WeatherSection'
 import type { PriceData } from './types'
-import { btcIcon, ethIcon, jsIcon, pythonIcon, usdIcon } from './icons'
-import { jstips } from './jstips'
-import { pythontips } from './pythontips'
+import { btcIcon, ethIcon, mathIcon, portugueseIcon, usdIcon } from './icons'
+// Os lembretes de JS e Python (./jstips e ./pythontips) continuam disponíveis,
+// mas a página agora exibe lembretes de Português e Matemática para concursos.
+import { portuguesetips } from './portuguesetips'
+import { mathtips } from './mathtips'
 
 export default function App() {
   const [prices, setPrices] = useState<PriceData>({})
@@ -121,11 +123,15 @@ export default function App() {
         <Header />
         <main className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <ReminderCard title="Lembretes de JS" tips={jstips} icon={jsIcon} />
             <ReminderCard
-              title="Lembretes de Python"
-              tips={pythontips}
-              icon={pythonIcon}
+              title="Lembretes de Português"
+              tips={portuguesetips}
+              icon={portugueseIcon}
+            />
+            <ReminderCard
+              title="Lembretes de Matemática"
+              tips={mathtips}
+              icon={mathIcon}
             />
           </div>
           <WeatherSection />
